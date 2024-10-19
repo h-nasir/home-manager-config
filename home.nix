@@ -12,6 +12,7 @@
       pkgs.fd
       pkgs.meslo-lgs-nf
       pkgs.neovim
+      pkgs.fastfetch
     ];
 
     shellAliases = {
