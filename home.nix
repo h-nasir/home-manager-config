@@ -58,6 +58,7 @@
         zsh = {
             enable = true;
             initExtra = ''
+                bindkey -v '^?' backward-delete-char
                 bindkey '^R' history-incremental-search-backward
                 '';
             plugins = [
