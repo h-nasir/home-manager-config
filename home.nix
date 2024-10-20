@@ -11,7 +11,6 @@
     packages = [
       pkgs.fd
       pkgs.meslo-lgs-nf
-      pkgs.neovim
       pkgs.fastfetch
     ];
 
@@ -22,8 +21,14 @@
       egrep="egrep --color=auto";
 
       ll = "ls -alF";
+    };
 
-      vim = "nvim";
+
+    file = {
+      "./.config/nvim/" = {
+        source = config.lib.file.mkOutOfStoreSymlink ./apps/nvim;
+        recursive = true;
+      };
     };
   };
 
@@ -45,13 +50,17 @@
       userName = "Hamza Nasir";
     };
 
+    neovim = {
+	enable = true;
+        defaultEditor = true;
+        vimAlias = true;
+    };
+
     zsh = {
       enable = true;
       initExtra = ''
-        export EDITOR="nvim";
-        export VISUAL="nvim";
+        bindkey '^R' history-incremental-search-backward
       '';
-
       plugins = [
         {
           name = "p10k-config";
