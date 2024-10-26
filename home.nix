@@ -9,9 +9,11 @@
         stateVersion = "24.05";
 
         packages = [
+            pkgs.gcc
+            pkgs.fastfetch
             pkgs.fd
             pkgs.meslo-lgs-nf
-            pkgs.fastfetch
+            pkgs.ripgrep
         ];
 
         shellAliases = {
@@ -28,6 +30,10 @@
                 source = config.lib.file.mkOutOfStoreSymlink ./apps/nvim;
                 recursive = true;
             };
+            "./.config/foot/" = {
+                source = config.lib.file.mkOutOfStoreSymlink ./apps/foot;
+                recursive = true;
+            };
         };
     };
 
@@ -37,10 +43,6 @@
 
         foot = {
             enable = true;
-            settings = {
-                main.font = "monospace:size=12";
-                cursor.blink = true;
-            };
         };
 
         git = {
