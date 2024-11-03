@@ -12,8 +12,12 @@
             pkgs.gcc
             pkgs.fastfetch
             pkgs.fd
+            pkgs.jdk
             pkgs.meslo-lgs-nf
+            pkgs.nil
+            pkgs.pyright
             pkgs.ripgrep
+            pkgs.tree
         ];
 
         shellAliases = {
