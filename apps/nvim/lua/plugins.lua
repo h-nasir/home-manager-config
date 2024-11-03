@@ -27,5 +27,6 @@ return {
         --         name = 'nvim_lsp'
         --     },
         -- },
-    }
+    },
+    {"mbbill/undotree"},
 }

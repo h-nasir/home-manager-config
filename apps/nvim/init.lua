@@ -11,6 +11,8 @@ vim.opt.cindent = true
 
 vim.opt.wrap = false
 
+vim.opt.undofile = true
+
 vim.cmd([[
     augroup vimrc-incsearch-highlight
         autocmd!

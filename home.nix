@@ -26,6 +26,7 @@
             pkgs.ripgrep
             pkgs.sublime
             pkgs.tree
+            pkgs.vscode
         ];
 
         shellAliases = {
