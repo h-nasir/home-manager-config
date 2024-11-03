@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
 {
+    nixpkgs.config.allowUnfree = true;
+
+    targets.genericLinux.enable = true;
+
+    xdg.mime.enable = true;
+    xdg.systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
+
     home = {
 
         username = "hamza";
@@ -17,6 +24,7 @@
             pkgs.nil
             pkgs.pyright
             pkgs.ripgrep
+            pkgs.sublime
             pkgs.tree
         ];
 
