@@ -23,7 +23,7 @@
             pkgs.jdk
             pkgs.meslo-lgs-nf
             pkgs.nil
-            pkgs.pyright
+            pkgs.basedpyright
             pkgs.ripgrep
             pkgs.sublime
             pkgs.tree
