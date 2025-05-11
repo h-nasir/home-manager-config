@@ -19,6 +19,7 @@
             pkgs.gcc
             pkgs.fastfetch
             pkgs.fd
+            pkgs.htop
             pkgs.jdk
             pkgs.meslo-lgs-nf
             pkgs.nil
