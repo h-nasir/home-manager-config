@@ -24,9 +24,11 @@
             pkgs.meslo-lgs-nf
             pkgs.nil
             pkgs.basedpyright
+            pkgs.python312
             pkgs.ripgrep
             pkgs.sublime
             pkgs.tree
+            pkgs.uv
             pkgs.vscode
         ];
 
