@@ -78,7 +78,7 @@
 
         zsh = {
             enable = true;
-            initExtra = ''
+            initContent = ''
                 bindkey -v '^?' backward-delete-char
                 bindkey '^R' history-incremental-search-backward
                 '';
