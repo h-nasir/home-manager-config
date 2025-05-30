@@ -16,14 +16,17 @@
         stateVersion = "24.05";
 
         packages = [
+            pkgs.cmake
             pkgs.gcc
             pkgs.fastfetch
             pkgs.fd
+            pkgs.gnumake
             pkgs.htop
             pkgs.jdk
             pkgs.meslo-lgs-nf
             pkgs.nil
             pkgs.basedpyright
+            pkgs.protobuf
             pkgs.python312
             pkgs.ripgrep
             pkgs.sublime
