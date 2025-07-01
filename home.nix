@@ -81,12 +81,27 @@
             vimAlias = true;
         };
 
+        tmux = {
+            enable = true;
+            escapeTime = 0;
+            focusEvents = true;
+            mouse = true;
+            terminal = "screen-256color";
+            extraConfig = ''
+                bind '\' split-window -h
+                bind '-' split-window -v
+            '';
+            plugins = [
+                pkgs.tmuxPlugins.vim-tmux-navigator
+            ];
+        };
+
         zsh = {
             enable = true;
             initContent = ''
                 bindkey -v '^?' backward-delete-char
                 bindkey '^R' history-incremental-search-backward
-                '';
+            '';
             plugins = [
             {
                 name = "p10k-config";
