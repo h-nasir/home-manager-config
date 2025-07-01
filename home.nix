@@ -98,10 +98,7 @@
 
         zsh = {
             enable = true;
-            initContent = ''
-                bindkey -v '^?' backward-delete-char
-                bindkey '^R' history-incremental-search-backward
-            '';
+            defaultKeymap = "emacs";
             plugins = [
             {
                 name = "p10k-config";
