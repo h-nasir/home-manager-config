@@ -32,8 +32,13 @@
             pkgs.sublime
             pkgs.tree
             pkgs.uv
+            pkgs.vcpkg
             pkgs.vscode
         ];
+
+        sessionVariables = {
+            VCPKG_ROOT = "${pkgs.vcpkg}/share/vcpkg";
+        };
 
         shellAliases = {
             ls="ls --color=auto";
