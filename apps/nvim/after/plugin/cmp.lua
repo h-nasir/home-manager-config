@@ -39,6 +39,11 @@ vim.lsp.config("clangd", {
     capabilities = capabilities
 })
 
+vim.lsp.enable("lua_ls")
+vim.lsp.config("lua_ls", {
+    capabilities = capabilities
+})
+
 lspconfig.nil_ls.setup({capabilities = capabilities})
 
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)

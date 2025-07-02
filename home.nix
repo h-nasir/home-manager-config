@@ -24,6 +24,7 @@
             pkgs.gnumake
             pkgs.htop
             pkgs.jdk
+            pkgs.lua-language-server
             pkgs.meslo-lgs-nf
             pkgs.nil
             pkgs.basedpyright
