@@ -16,7 +16,6 @@ cmp.setup({
     },
 })
 
-local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 vim.lsp.enable("basedpyright")
@@ -44,7 +43,12 @@ vim.lsp.config("lua_ls", {
     capabilities = capabilities
 })
 
-lspconfig.nil_ls.setup({capabilities = capabilities})
+vim.lsp.enable("nil_ls")
+vim.lsp.config("nil_ls", {
+    capabilities = capabilities
+})
+
+vim.diagnostic.config({ virtual_text = true })
 
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
