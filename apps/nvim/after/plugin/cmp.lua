@@ -19,7 +19,8 @@ cmp.setup({
 local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lspconfig.basedpyright.setup({
+vim.lsp.enable("basedpyright")
+vim.lsp.config("basedpyright", {
     -- on_init = function(client)
     --     client.server_capabilities.semanticTokensProvider = nil
     -- end,
@@ -31,6 +32,11 @@ lspconfig.basedpyright.setup({
             }
         }
     }
+})
+
+vim.lsp.enable("clangd")
+vim.lsp.config("clangd", {
+    capabilities = capabilities
 })
 
 lspconfig.nil_ls.setup({capabilities = capabilities})

@@ -17,6 +17,7 @@
 
         packages = [
             pkgs.cmake
+            pkgs.clang-tools
             pkgs.gcc
             pkgs.fastfetch
             pkgs.fd
