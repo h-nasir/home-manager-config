@@ -40,7 +40,14 @@ vim.lsp.config("clangd", {
 
 vim.lsp.enable("lua_ls")
 vim.lsp.config("lua_ls", {
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = {'vim'},
+            },
+        },
+    },
 })
 
 vim.lsp.enable("nil_ls")
