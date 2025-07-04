@@ -20,3 +20,12 @@ vim.cmd([[
         autocmd CmdlineLeave /,\? :set nohlsearch
     augroup END
 ]])
+
+vim.api.nvim_create_autocmd("CursorMoved", {
+    pattern = "*",
+    callback = function()
+        vim.lsp.buf.clear_references()
+        vim.lsp.buf.document_highlight()
+    end,
+    desc = "Highlight LSP references",
+})
