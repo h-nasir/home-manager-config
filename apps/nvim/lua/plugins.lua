@@ -22,11 +22,6 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
         },
-        -- opts = {
-        --     sources = {
-        --         name = 'nvim_lsp'
-        --     },
-        -- },
     },
     {"mbbill/undotree"},
     {
@@ -53,8 +48,14 @@ return {
         config = true
     },
     {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        lazy = false,
+    },
+    {
         "folke/trouble.nvim",
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
+        opts = {},
         cmd = "Trouble",
         keys = {
             {
