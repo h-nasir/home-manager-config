@@ -36,6 +36,7 @@
             pkgs.uv
             pkgs.vcpkg
             pkgs.vscode
+            pkgs.yazi
         ];
 
         sessionVariables = {
