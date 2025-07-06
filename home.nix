@@ -105,7 +105,7 @@
             plugins = [
             {
                 name = "p10k-config";
-                src = ./p10k;
+                src = config.lib.file.mkOutOfStoreSymlink ./p10k;
                 file = "p10k.zsh";
             }
             {
