@@ -29,7 +29,6 @@
             pkgs.nil
             pkgs.basedpyright
             pkgs.protobuf
-            pkgs.python312
             pkgs.ripgrep
             pkgs.sublime
             pkgs.tree
@@ -42,6 +41,10 @@
         sessionVariables = {
             VCPKG_ROOT = "${pkgs.vcpkg}/share/vcpkg";
         };
+
+        sessionPath = [
+            "$HOME/.local/bin"
+        ];
 
         shellAliases = {
             ls="ls --color=auto";
