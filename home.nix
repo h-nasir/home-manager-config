@@ -25,6 +25,7 @@
             pkgs.htop
             pkgs.jdk
             pkgs.lua-language-server
+            pkgs.maven
             pkgs.meslo-lgs-nf
             pkgs.nil
             pkgs.basedpyright
