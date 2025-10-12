@@ -53,7 +53,7 @@
             fgrep="fgrep --color=auto";
             egrep="egrep --color=auto";
 
-            ll = "ls -alF";
+            ll = "ls -ahlF";
         };
 
         file = {
