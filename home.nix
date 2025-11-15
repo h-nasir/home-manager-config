@@ -18,7 +18,7 @@
         username = "hamza";
         homeDirectory = "/home/hamza";
 
-        stateVersion = "25.11";
+        stateVersion = "25.05";
 
         packages = [
             pkgs.basedpyright
