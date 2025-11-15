@@ -16,11 +16,12 @@
         stateVersion = "25.11";
 
         packages = [
+            pkgs.basedpyright
             pkgs.cmake
             pkgs.clang-tools
-            pkgs.gcc
             pkgs.fastfetch
             pkgs.fd
+            pkgs.gcc
             pkgs.gnumake
             pkgs.htop
             pkgs.jdk
@@ -28,19 +29,18 @@
             pkgs.maven
             pkgs.meslo-lgs-nf
             pkgs.nil
-            pkgs.basedpyright
             pkgs.protobuf
             pkgs.ripgrep
             pkgs.sublime
             pkgs.tree
             pkgs.uv
-            pkgs.vcpkg
+            # pkgs.vcpkg # Disabled until vcpkg supports fmt12
             pkgs.vscode
             pkgs.yazi
         ];
 
         sessionVariables = {
-            VCPKG_ROOT = "${pkgs.vcpkg}/share/vcpkg";
+            # VCPKG_ROOT = "${pkgs.vcpkg}/share/vcpkg";
         };
 
         sessionPath = [
@@ -65,6 +65,10 @@
                 source = config.lib.file.mkOutOfStoreSymlink ./apps/foot;
                 recursive = true;
             };
+            "./.config/ghostty/" = {
+                source = config.lib.file.mkOutOfStoreSymlink ./apps/ghostty;
+                recursive = true;
+            };
         };
     };
 
@@ -78,8 +82,14 @@
 
         git = {
             enable = true;
-            userEmail = "hamzanasir@hotmail.co.uk";
-            userName = "Hamza Nasir";
+            settings = {
+                user.email = "hamzanasir@hotmail.co.uk";
+                user.name = "Hamza Nasir";
+            };
+        };
+
+        ghostty = {
+            enable = true;
         };
 
         neovim = {
