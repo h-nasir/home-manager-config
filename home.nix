@@ -42,6 +42,7 @@ in
             pkgs.gcc
             pkgs.gnumake
             pkgs.htop
+            pkgs.inotify-tools
             pkgs.jdk
             pkgs.lua-language-server
             pkgs.maven
@@ -49,6 +50,7 @@ in
             pkgs.nil
             pkgs.protobuf
             pkgs.ripgrep
+            pkgs.rustup
             pkgs.sublime
             pkgs.tree
             pkgs.uv
@@ -131,6 +133,9 @@ in
                 file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
             }
             ];
+            initExtra = ''
+                source $HOME/.config/home-manager/bash_functions.sh
+            '';
         };
 
         home-manager.enable = true;
