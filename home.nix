@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 let
+    currentDir = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager";
+
     configRoot = "apps";
     configDirs = builtins.attrNames (builtins.readDir ./${configRoot});
 in
@@ -21,7 +23,7 @@ in
         configFile = builtins.listToAttrs (map (dir: {
             name = dir;
             value = {
-                source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/${configRoot}/${dir}";
+                source = "${currentDir}/${configRoot}/${dir}";
             };
         }) configDirs);
     };
@@ -133,8 +135,8 @@ in
                 file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
             }
             ];
-            initExtra = ''
-                source $HOME/.config/home-manager/bash_functions.sh
+            initContent = ''
+                source "${currentDir}/bash_functions.sh"
             '';
         };
 
