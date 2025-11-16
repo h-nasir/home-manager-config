@@ -39,6 +39,7 @@ in
             pkgs.basedpyright
             pkgs.cmake
             pkgs.clang-tools
+            pkgs.entr
             pkgs.fastfetch
             pkgs.fd
             pkgs.gcc
