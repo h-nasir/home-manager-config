@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+    configRoot = "apps";
+    configDirs = builtins.attrNames (builtins.readDir ./${configRoot});
+in
 {
     nix = {
         package = pkgs.nix;
@@ -10,8 +14,17 @@
 
     targets.genericLinux.enable = true;
 
-    xdg.mime.enable = true;
-    xdg.systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
+    xdg = {
+        mime.enable = true;
+        systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
+
+        configFile = builtins.listToAttrs (map (dir: {
+            name = dir;
+            value = {
+                source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/${configRoot}/${dir}";
+            };
+        }) configDirs);
+    };
 
     home = {
 
@@ -59,21 +72,6 @@
             egrep="egrep --color=auto";
 
             ll = "ls -ahlF";
-        };
-
-        file = {
-            "./.config/nvim/" = {
-                source = config.lib.file.mkOutOfStoreSymlink ./apps/nvim;
-                recursive = true;
-            };
-            "./.config/foot/" = {
-                source = config.lib.file.mkOutOfStoreSymlink ./apps/foot;
-                recursive = true;
-            };
-            "./.config/ghostty/" = {
-                source = config.lib.file.mkOutOfStoreSymlink ./apps/ghostty;
-                recursive = true;
-            };
         };
     };
 
