@@ -13,6 +13,8 @@ vim.opt.wrap = false
 
 vim.opt.undofile = true
 
+vim.keymap.set("n", "<C-M-l>", "gg=G``", { noremap = true })
+
 vim.cmd([[
     augroup vimrc-incsearch-highlight
         autocmd!

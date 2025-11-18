@@ -6,7 +6,7 @@ return {
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
-                ensure_installed = { "c", "cpp", "java", "lua", "vim", "vimdoc", "javascript", "html", "python" },
+                ensure_installed = { "c", "cpp", "java", "lua", "vim", "vimdoc", "javascript", "html", "python", "rust" },
                 sync_install = false,
                 highlight = { enable = true },
                 indent = { enable = true },
@@ -22,6 +22,11 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
         },
+    },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^6', -- Recommended
+        lazy = false, -- This plugin is already lazy
     },
     {"mbbill/undotree"},
     {

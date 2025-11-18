@@ -56,9 +56,11 @@ in
             pkgs.rustup
             pkgs.sublime
             pkgs.tree
+            pkgs.tree-sitter
             pkgs.uv
             # pkgs.vcpkg # Disabled until vcpkg supports fmt12
             pkgs.vscode
+            pkgs.wl-clipboard
             pkgs.yazi
         ];
 
