@@ -29,13 +29,13 @@ in
     };
 
     home = {
-
         username = "hamza";
         homeDirectory = "/home/hamza";
 
         stateVersion = "25.05";
 
         packages = [
+            pkgs.bat
             pkgs.basedpyright
             pkgs.cmake
             pkgs.clang-tools
@@ -117,29 +117,32 @@ in
             extraConfig = ''
                 bind '\' split-window -h
                 bind '-' split-window -v
+
             '';
-            plugins = [
-                pkgs.tmuxPlugins.vim-tmux-navigator
+            plugins = with pkgs.tmuxPlugins; [
+                vim-tmux-navigator
+                {
+                    plugin = resurrect;
+                }
+                {
+                    plugin = continuum;
+                    extraConfig = ''
+                        set -g @continuum-restore 'on'
+                        set -g @continuum-save-interval '1'
+                    '';
+                }
             ];
         };
 
-        zsh = {
+        fish = {
             enable = true;
-            defaultKeymap = "emacs";
-            plugins = [
-            {
-                name = "p10k-config";
-                src = config.lib.file.mkOutOfStoreSymlink ./p10k;
-                file = "p10k.zsh";
-            }
-            {
-                name = "zsh-powerlevel10k";
-                src = pkgs.zsh-powerlevel10k;
-                file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-            }
-            ];
-            initContent = ''
-                source "${currentDir}/bash_functions.sh"
+            shellInit = ''
+                set fish_greeting
+            '';
+            interactiveShellInit = ''
+                if type -q tmux; and test -n "$DISPLAY"; and test -z "$TMUX"
+                    tmux new-session -A -s $USER
+                end
             '';
         };
 
