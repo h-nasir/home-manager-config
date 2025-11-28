@@ -1,3 +1,7 @@
 theme = Atom One Dark
+
+font-feature = -calt
+
 gtk-titlebar-hide-when-maximized = true
+
 shell-integration-features = no-cursor

@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 let
-    currentDir = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager";
+currentDir = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager";
 
-    configRoot = "apps";
-    configDirs = builtins.attrNames (builtins.readDir ./${configRoot});
+configRoot = "apps";
+configDirs = builtins.attrNames (builtins.readDir ./${configRoot});
 in
 {
     nix = {
@@ -21,11 +21,11 @@ in
         systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
 
         configFile = builtins.listToAttrs (map (dir: {
-            name = dir;
-            value = {
-                source = "${currentDir}/${configRoot}/${dir}";
-            };
-        }) configDirs);
+                    name = dir;
+                    value = {
+                    source = "${currentDir}/${configRoot}/${dir}";
+                    };
+                    }) configDirs);
     };
 
     home = {
@@ -36,36 +36,37 @@ in
 
         packages = [
             pkgs.bat
-            pkgs.basedpyright
-            pkgs.cmake
-            pkgs.clang-tools
-            pkgs.entr
-            pkgs.fastfetch
-            pkgs.fd
-            pkgs.gcc
-            pkgs.gnumake
-            pkgs.htop
-            pkgs.inotify-tools
-            pkgs.jdk
-            pkgs.lua-language-server
-            pkgs.maven
-            pkgs.meslo-lgs-nf
-            pkgs.nil
-            pkgs.protobuf
-            pkgs.ripgrep
-            pkgs.rustup
-            pkgs.sublime
-            pkgs.tree
-            pkgs.tree-sitter
-            pkgs.uv
-            # pkgs.vcpkg # Disabled until vcpkg supports fmt12
-            pkgs.vscode
-            pkgs.wl-clipboard
-            pkgs.yazi
-        ];
+                pkgs.basedpyright
+                pkgs.cmake
+                pkgs.clang-tools
+                pkgs.entr
+                pkgs.fastfetch
+                pkgs.fd
+                pkgs.gcc
+                pkgs.gnumake
+                pkgs.htop
+                pkgs.inotify-tools
+                pkgs.jdk
+                pkgs.lua-language-server
+                pkgs.maven
+                pkgs.meslo-lgs-nf
+                pkgs.nil
+                pkgs.protobuf
+                pkgs.ripgrep
+                pkgs.rustup
+                pkgs.sublime
+                pkgs.tree
+                pkgs.tree-sitter
+                pkgs.uv
+# pkgs.vcpkg # Disabled until vcpkg supports fmt12
+                pkgs.vscode
+                pkgs.wmctrl
+                pkgs.wl-clipboard
+                pkgs.yazi
+                ];
 
         sessionVariables = {
-            # VCPKG_ROOT = "${pkgs.vcpkg}/share/vcpkg";
+# VCPKG_ROOT = "${pkgs.vcpkg}/share/vcpkg";
         };
 
         sessionPath = [
@@ -110,6 +111,7 @@ in
 
         tmux = {
             enable = true;
+            keyMode = "vi";
             escapeTime = 0;
             focusEvents = true;
             mouse = true;
@@ -117,20 +119,28 @@ in
             extraConfig = ''
                 bind '\' split-window -h
                 bind '-' split-window -v
-
-            '';
+                '';
             plugins = with pkgs.tmuxPlugins; [
-                vim-tmux-navigator
-                {
-                    plugin = resurrect;
-                }
-                {
-                    plugin = continuum;
-                    extraConfig = ''
-                        set -g @continuum-restore 'on'
-                        set -g @continuum-save-interval '1'
+            {
+                plugin = vim-tmux-navigator;
+                extraConfig = ''
+                    set -g @vim_navigator_mapping_left "M-h"
+                    set -g @vim_navigator_mapping_right "M-l"
+                    set -g @vim_navigator_mapping_up "M-k"
+                    set -g @vim_navigator_mapping_down "M-j"
+                    set -g @vim_navigator_mapping_prev ""
                     '';
-                }
+            }
+            {
+                plugin = resurrect;
+            }
+            {
+                plugin = continuum;
+                extraConfig = ''
+                    set -g @continuum-restore 'on'
+                    set -g @continuum-save-interval '1'
+                    '';
+            }
             ];
         };
 
@@ -138,12 +148,13 @@ in
             enable = true;
             shellInit = ''
                 set fish_greeting
-            '';
-            interactiveShellInit = ''
-                if type -q tmux; and test -n "$DISPLAY"; and test -z "$TMUX"
-                    tmux new-session -A -s $USER
-                end
-            '';
+
+                bind \ch backward-char        # Ctrl-h  = move left
+                bind \cl forward-char         # Ctrl-l  = move right
+
+                bind \cj down-or-search       # Ctrl-j  = down
+                bind \ck up-or-search         # Ctrl-k  = up
+                '';
         };
 
         home-manager.enable = true;
