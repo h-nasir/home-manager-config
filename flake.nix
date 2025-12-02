@@ -16,7 +16,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      homeConfigurations."hamza" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."hnasir" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [ ./home.nix ];
