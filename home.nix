@@ -42,6 +42,7 @@ in
                 pkgs.entr
                 pkgs.fastfetch
                 pkgs.fd
+                pkgs.fzf
                 pkgs.gcc
                 pkgs.gnumake
                 pkgs.htop
@@ -115,12 +116,22 @@ in
             escapeTime = 0;
             focusEvents = true;
             mouse = true;
-            terminal = "screen-256color";
+            terminal = "xterm-256color";
             extraConfig = ''
+                set -as terminal-overrides ",*256color*:RGB"
+
                 bind '\' split-window -h
                 bind '-' split-window -v
                 '';
             plugins = with pkgs.tmuxPlugins; [
+            {
+                plugin = tmux-fzf;
+                extraConfig = ''
+                    bind C-j display-popup "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+                    bind C-f split-window -v "fd -a --type f | fzf --reverse --preview 'bat --plain --color=always {}' | xargs -I {} tmux send-keys -t 0 nvim Space {} Enter"
+                    bind C-d split-window -v "fd -a --type d | fzf --reverse | xargs -I {} tmux send-keys -t 0 cd Space {} Enter"
+                    '';
+            }
             {
                 plugin = vim-tmux-navigator;
                 extraConfig = ''
