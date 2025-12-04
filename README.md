@@ -2,6 +2,15 @@
 
 Config files for use with [Nix Home Manager](https://github.com/nix-community/home-manager)
 
+## Usage
+
+Follow [instructions](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone) to install standalone home manager.
+
+Active environment with
+```bash
+home-manager switch --impure
+```
+
 ## Additional Config
 
 ### Fish

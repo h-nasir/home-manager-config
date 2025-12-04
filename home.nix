@@ -5,7 +5,9 @@ currentDir = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.
 
 configRoot = "apps";
 configDirs = builtins.attrNames (builtins.readDir ./${configRoot});
-in
+
+isWayland = builtins.getEnv "XDG_SESSION_TYPE" == "wayland";
+in 
 {
     nix = {
         package = pkgs.nix;
@@ -62,7 +64,7 @@ in
 # pkgs.vcpkg # Disabled until vcpkg supports fmt12
                 pkgs.vscode
                 pkgs.wmctrl
-                pkgs.wl-clipboard
+                (if isWayland then pkgs.wl-clipboard else pkgs.xclip)
                 pkgs.yazi
                 ];
 
