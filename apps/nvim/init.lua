@@ -13,7 +13,7 @@ vim.opt.wrap = false
 
 vim.opt.undofile = true
 
-vim.keymap.set("n", "<C-M-l>", "gg=G``", { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-M-l>', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true })
 
 vim.cmd([[
     augroup vimrc-incsearch-highlight

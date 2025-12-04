@@ -49,7 +49,14 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.enable("nil_ls")
 vim.lsp.config("nil_ls", {
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+      ['nil'] = {
+         formatting = {
+            command = { "nixfmt" },
+         },
+      },
+   },
 })
 
 vim.diagnostic.config({ virtual_text = true })
