@@ -16,7 +16,7 @@ Activate environment with:
 home-manager switch --impure
 ```
 > [!NOTE]
-> The `--impure` flag is necessary to determine the XDG session type at runtime
+> You may need to use `home-manager switch --impure -b backup` on first activation to allow overwriting the manually created `nix.conf`. After this the config file will be managed by home manager.
 
 ## Additional Config
 
