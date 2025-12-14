@@ -43,7 +43,6 @@ in
 
     file = {
         ".ideavimrc".source = "${currentDir}/.ideavimrc";
-        # ".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.ideavimrc";
     };
 
     packages = [
@@ -96,10 +95,6 @@ in
   fonts.fontconfig.enable = true;
 
   programs = {
-
-    foot = {
-      enable = true;
-    };
 
     git = {
       enable = true;

@@ -31,3 +31,13 @@ vim.api.nvim_create_autocmd("CursorMoved", {
     end,
     desc = "Highlight LSP references",
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function()
+        local has_parser = pcall(vim.treesitter.get_parser)
+        if has_parser then
+            vim.treesitter.start()
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+    end,
+})

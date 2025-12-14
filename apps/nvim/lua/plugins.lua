@@ -1,19 +1,15 @@
 return {
-    {"nvim-telescope/telescope.nvim", tag = "0.1.8", dependencies = { "nvim-lua/plenary.nvim" }},
-    {"navarasu/onedark.nvim"},
-    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate",
-        config = function ()
-            local configs = require("nvim-treesitter.configs")
-
-            configs.setup({
-                ensure_installed = { "c", "cpp", "java", "lua", "vim", "vimdoc", "javascript", "html", "python", "rust" },
-                sync_install = false,
-                highlight = { enable = true },
-                indent = { enable = true },
-            })
-        end
+    { "nvim-telescope/telescope.nvim", tag = "0.1.8", dependencies = { "nvim-lua/plenary.nvim" } },
+    { "navarasu/onedark.nvim" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter").install({ "all" })
+        end,
     },
-    {"neovim/nvim-lspconfig"},
+    { "neovim/nvim-lspconfig" },
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
@@ -26,9 +22,9 @@ return {
     {
         'mrcjkb/rustaceanvim',
         version = '^6', -- Recommended
-        lazy = false, -- This plugin is already lazy
+        lazy = false,   -- This plugin is already lazy
     },
-    {"mbbill/undotree"},
+    { "mbbill/undotree" },
     {
         "christoomey/vim-tmux-navigator",
         cmd = {
