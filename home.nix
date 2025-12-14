@@ -42,7 +42,7 @@ in
     stateVersion = "25.05";
 
     file = {
-        ".ideavimrc".source = "${currentDir}/.ideavimrc";
+      ".ideavimrc".source = "${currentDir}/.ideavimrc";
     };
 
     packages = [
@@ -59,6 +59,7 @@ in
       pkgs.gnumake
       pkgs.htop
       pkgs.inotify-tools
+      pkgs.jetbrains-toolbox
       pkgs.jdk
       pkgs.lua-language-server
       pkgs.maven
@@ -81,6 +82,10 @@ in
     sessionPath = [
       "$HOME/.local/bin"
     ];
+
+    sessionVariables = {
+      EDITOR = "${config.home.homeDirectory}/.nix-profile/bin/nvim";
+    };
 
     shellAliases = {
       ls = "ls --color=auto";
@@ -110,7 +115,6 @@ in
 
     neovim = {
       enable = true;
-      defaultEditor = true;
       vimAlias = true;
     };
 
