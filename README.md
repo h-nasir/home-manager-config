@@ -16,9 +16,9 @@ Activate environment with:
 home-manager switch --impure
 ```
 > [!NOTE]
-> You may need to use `home-manager switch --impure -b backup` on first activation to allow overwriting the manually created `nix.conf`. After this the config file will be managed by home manager.
+> You may need to use `home-manager switch --impure -b backup` on first activation to allow overwriting the manually created `nix.conf`. After this the config file will be managed by home manager itself.
 
-After first activation you should see a warning that looks like something the following.
+Upon activation you may see a warning like this:
 ```bash
 This non-NixOS system is not yet set up to use the GPU
 with Nix packages. To set up GPU drivers, run
@@ -27,15 +27,19 @@ with Nix packages. To set up GPU drivers, run
 You will need to run this command to allow Nix-managed OpenGL applications (e.g. ghostty) to work correctly.
 
 > [!NOTE]
-> If SELinux is enabled you will likely see the error `Failed to enable unit: Access denied`. You can use `setenforce 0` before running the command to temporarily place SELinux into permissive mode, then use `setenforce 1` after this to reset back to enforcing mode.
+> If SELinux is enabled you will likely see the error `Failed to enable unit: Access denied`. You can workaround this by [changing SELinux to permissive mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/using_selinux/changing-selinux-states-and-modes_using-selinux#changing-to-permissive-mode_changing-selinux-states-and-modes).
 
 ## Additional Config
 
 ### Fish
 Add to `.bashrc` to execute fish on shell startup:
 ```bash
-NIX_SHELL="$HOME/.nix-profile/bin/fish"
-if [ -f $NIX_SHELL ]; then
-  exec $NIX_SHELL
+if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" \
+      && -z ${BASH_EXECUTION_STRING} \
+      && ${SHLVL} == 1 \
+      && -x "$(command -v fish)" ]]
+then
+    shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+    exec fish $LOGIN_OPTION
 fi
 ```
