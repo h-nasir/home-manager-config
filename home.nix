@@ -48,6 +48,7 @@ in
     packages = [
       pkgs.bat
       pkgs.basedpyright
+      pkgs.ccache
       pkgs.cmake
       pkgs.clang-tools
       pkgs.conan
