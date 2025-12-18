@@ -135,7 +135,7 @@ in
         {
           plugin = tmux-fzf;
           extraConfig = ''
-            bind C-j display-popup "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+            bind C-j display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
             bind C-f split-window -v "fd -a --type f | fzf --reverse --preview 'bat --plain --color=always {}' | xargs -I {} tmux send-keys -t 0 nvim Space {} Enter"
             bind C-d split-window -v "fd -a --type d | fzf --reverse | xargs -I {} tmux send-keys -t 0 cd Space {} Enter"
           '';
