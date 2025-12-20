@@ -69,6 +69,8 @@ in
       pkgs.protobuf
       pkgs.ripgrep
       pkgs.rustup
+      pkgs.sdl3
+      pkgs.sdl3.dev
       pkgs.sublime
       pkgs.tree
       pkgs.tree-sitter
