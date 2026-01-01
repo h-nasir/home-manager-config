@@ -75,6 +75,7 @@ in
       pkgs.tree
       pkgs.tree-sitter
       pkgs.uv
+      pkgs.valgrind
       pkgs.vscode
       pkgs.wmctrl
       (if isWayland then pkgs.wl-clipboard else pkgs.xclip)
