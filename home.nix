@@ -22,7 +22,7 @@ in
   targets.genericLinux.enable = true;
 
   xdg = {
-    mime.enable = true;
+    mime.enable = false;
     systemDirs.data = [ "${config.home.homeDirectory}/.nix-profile/share/applications" ];
 
     configFile = builtins.listToAttrs (
