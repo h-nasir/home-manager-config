@@ -55,10 +55,12 @@ in
       pkgs.fastfetch
       pkgs.fd
       pkgs.fzf
+      pkgs.gbenchmark
       pkgs.gcc
       pkgs.gnumake
       pkgs.htop
       pkgs.inotify-tools
+      pkgs.intel-oneapi-toolkit
       pkgs.jetbrains-toolbox
       pkgs.jdk
       pkgs.lua-language-server
@@ -66,12 +68,12 @@ in
       pkgs.meslo-lgs-nf
       pkgs.nil
       pkgs.nixfmt
+      pkgs.perf
       pkgs.protobuf
       pkgs.ripgrep
       pkgs.rustup
       pkgs.sdl3
       pkgs.sdl3.dev
-      pkgs.sublime
       pkgs.tree
       pkgs.tree-sitter
       pkgs.uv
@@ -118,7 +120,10 @@ in
 
     neovim = {
       enable = true;
+      sideloadInitLua = true;
       vimAlias = true;
+      withRuby = false;
+      withPython3 = false;
     };
 
     tmux = {
