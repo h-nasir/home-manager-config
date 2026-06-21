@@ -86,10 +86,12 @@ in
 
     sessionPath = [
       "$HOME/.local/bin"
+      "$HOME/.nix-profile/vtune/latest/bin64"
     ];
 
     sessionVariables = {
       EDITOR = "${config.home.homeDirectory}/.nix-profile/bin/nvim";
+      VTUNE_PROFILER_DIR = "${pkgs.intel-oneapi-toolkit}/vtune/latest";
     };
 
     shellAliases = {
@@ -181,7 +183,17 @@ in
 
         bind \cj down-or-search       # Ctrl-j  = down
         bind \ck up-or-search         # Ctrl-k  = up
+
+        if test -f $HOME/.nix-profile/vtune/latest/vtune-vars.sh
+          bass source $HOME/.nix-profile/vtune/latest/vtune-vars.sh
+        end
       '';
+      plugins = with pkgs.fishPlugins; [
+        {
+          name = "bass";
+          src = bass.src;
+        }
+      ];
     };
 
     home-manager.enable = true;
