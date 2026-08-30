@@ -9,6 +9,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.cindent = true
 
+vim.opt.scrolloff = 5
+
 vim.opt.wrap = false
 
 vim.opt.undofile = true
