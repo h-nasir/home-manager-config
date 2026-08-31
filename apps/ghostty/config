@@ -1,5 +1,3 @@
-command = fish
-
 theme = Kitty Default
 
 font-feature = -calt

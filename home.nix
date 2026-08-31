@@ -108,6 +108,11 @@ in
 
     bash = {
       enable = true;
+      initExtra = ''
+        if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
+            SHELL=${pkgs.fish}/bin/fish exec fish
+        fi
+      '';
     };
 
     git = {
@@ -181,16 +186,16 @@ in
         set fish_greeting
       '';
       binds = {
-        "\ch" = {
+        "\\ch" = {
           command = "backward-char";
         };
-        "\cl" = {
+        "\\cl" = {
           command = "forward-char";
         };
-        "\cj" = {
+        "\\cj" = {
           command = "down-or-search";
         };
-        "\ck" = {
+        "\\ck" = {
           command = "up-or-search";
         };
         "\\t" = {
