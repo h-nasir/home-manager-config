@@ -180,6 +180,8 @@ in
 
         bind \cj down-or-search       # Ctrl-j  = down
         bind \ck up-or-search         # Ctrl-k  = up
+
+        bind \t 'if not commandline -P ; commandline -f complete; end'  # Disable Tab for pager
       '';
       functions = {
         fish_prompt = {
