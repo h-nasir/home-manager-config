@@ -181,6 +181,11 @@ in
         bind \cj down-or-search       # Ctrl-j  = down
         bind \ck up-or-search         # Ctrl-k  = up
       '';
+      functions = {
+        fish_prompt = {
+          body = builtins.readFile ./fish/fish_prompt.fish;
+        };
+      };
       plugins = with pkgs.fishPlugins; [
         {
           name = "bass";
