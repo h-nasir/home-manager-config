@@ -29,16 +29,3 @@ You will need to run this command to allow Nix-managed OpenGL applications (e.g.
 > [!NOTE]
 > If SELinux is enabled you will likely see the error `Failed to enable unit: Access denied`. You can workaround this by [changing SELinux to permissive mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/using_selinux/changing-selinux-states-and-modes_using-selinux#changing-to-permissive-mode_changing-selinux-states-and-modes).
 
-## Additional Config
-
-### Fish
-Add to `.bashrc` to execute fish on shell startup:
-```bash
-if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" \
-      && -z ${BASH_EXECUTION_STRING} \
-      && -x "$(command -v fish)" ]]
-then
-    shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
-    exec fish $LOGIN_OPTION
-fi
-```

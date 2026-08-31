@@ -89,6 +89,7 @@ in
 
     sessionVariables = {
       EDITOR = "${config.home.homeDirectory}/.nix-profile/bin/nvim";
+      SHELL = "${config.home.homeDirectory}/.nix-profile/bin/fish";
     };
 
     shellAliases = {
@@ -104,6 +105,10 @@ in
   fonts.fontconfig.enable = true;
 
   programs = {
+
+    bash = {
+      enable = true;
+    };
 
     git = {
       enable = true;
@@ -174,17 +179,27 @@ in
       enable = true;
       shellInit = ''
         set fish_greeting
-
-        bind \ch backward-char        # Ctrl-h  = move left
-        bind \cl forward-char         # Ctrl-l  = move right
-
-        bind \cj down-or-search       # Ctrl-j  = down
-        bind \ck up-or-search         # Ctrl-k  = up
-
-        bind \t 'if not commandline -P ; commandline -f complete; end'  # Disable Tab for pager
       '';
+      binds = {
+        "\ch" = {
+          command = "backward-char";
+        };
+        "\cl" = {
+          command = "forward-char";
+        };
+        "\cj" = {
+          command = "down-or-search";
+        };
+        "\ck" = {
+          command = "up-or-search";
+        };
+        "\\t" = {
+          command = "if not commandline -P ; commandline -f complete; end";
+        };
+      };
       functions = {
         fish_prompt = {
+          description = "Write out the prompt";
           body = builtins.readFile ./fish/fish_prompt.fish;
         };
       };
