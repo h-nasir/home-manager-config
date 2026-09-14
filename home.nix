@@ -46,6 +46,14 @@ in
     };
 
     packages = [
+      (pkgs.buildEnv {
+        name = "cpp-compilers";
+        paths = [
+          pkgs.gcc
+          pkgs.clang
+        ];
+        ignoreCollisions = true;
+      })
       pkgs.bat
       pkgs.basedpyright
       pkgs.cmake
@@ -56,12 +64,12 @@ in
       pkgs.fd
       pkgs.fzf
       pkgs.gbenchmark
-      pkgs.gcc
       pkgs.gnumake
       pkgs.htop
       pkgs.inotify-tools
       pkgs.jetbrains-toolbox
       pkgs.jdk
+      pkgs.llvm
       pkgs.lua-language-server
       pkgs.maven
       pkgs.meslo-lgs-nf
