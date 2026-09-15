@@ -55,7 +55,7 @@ in
         name = "cpp-compilers";
         paths = [
           pkgs.gcc
-          (lib.lowPrio pkgs.gcc-unwrapped)
+          (lib.lowPrio pkgs.gcc.cc)
           pkgs.clang
         ];
         ignoreCollisions = true;
