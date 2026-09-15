@@ -50,6 +50,7 @@ in
         name = "cpp-compilers";
         paths = [
           pkgs.gcc
+          pkgs.gcc-unwrapped
           pkgs.clang
         ];
         ignoreCollisions = true;
