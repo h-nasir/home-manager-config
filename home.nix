@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   currentDir = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager";
@@ -50,7 +55,7 @@ in
         name = "cpp-compilers";
         paths = [
           pkgs.gcc
-          pkgs.gcc-unwrapped
+          (lib.lowPrio pkgs.gcc-unwrapped)
           pkgs.clang
         ];
         ignoreCollisions = true;
