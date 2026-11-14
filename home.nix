@@ -65,6 +65,7 @@ in
       pkgs.cmake
       pkgs.clang-tools
       pkgs.conan
+      pkgs.cpuid
       pkgs.entr
       pkgs.fastfetch
       pkgs.fd
